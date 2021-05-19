@@ -27,12 +27,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      # Builds the docker image
-      - name: build 
-        run: sudo docker build ./ -t adservice:1.0
+#       # Builds the docker image
+#       - name: build 
+#         run: sudo docker build ./ -t adservice:1.0
       # Runs a set of commands using the runners shell
-      - name: test
-        run: sudo docker images
+#       - name: test
+#         run: sudo docker images
         
-      - name: login
-        run: docker login 65.2.154.146
+      - name: login        r
+        run: echo "${{ secrets.HARBOR_PWD }}" | docker login 65.2.154.146 -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
