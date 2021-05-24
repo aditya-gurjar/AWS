@@ -34,12 +34,17 @@ jobs:
 #       - name: test
 #         run: sudo docker images
     
-      - name: implement content trust using notary
+      - name: Implement content trust using notary
         run: export DOCKER_CONTENT_TRUST=1
       
-      - run: export DOCKER_CONTENT_TRUST_SERVER=https://harbordemo351.tk
-      - run: export DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE="mypassphrase123"
-      - run: export DOCKER_CONTENT_TRUST_ROOT_PASSPHRASE="rootpassphrase123"
+      - name: Set trust server.
+        run: export DOCKER_CONTENT_TRUST_SERVER=https://harbordemo351.tk
+        
+      - name: Set pwd.
+        run: export DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE="mypassphrase123"
+      
+      - name: Set pwd2
+        run: export DOCKER_CONTENT_TRUST_ROOT_PASSPHRASE="rootpassphrase123"
 
       - name: login to harbor
         run: echo "${{ secrets.HARBOR_PWD }}" | docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
