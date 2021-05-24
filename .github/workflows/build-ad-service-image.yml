@@ -23,7 +23,7 @@ jobs:
       run:
         working-directory: ./adservice
     env:
-      DOCKER_CONTENT_TRUST="${{ secrets.DOCKER_CONTENT_TRUST }}"
+      DOCKER_CONTENT_TRUST="${{ 1 }}"
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
