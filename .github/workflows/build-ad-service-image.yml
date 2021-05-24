@@ -35,4 +35,4 @@ jobs:
 #         run: sudo docker images
         
       - name: login        r
-        run: echo "${{ secrets.HARBOR_PWD }}" | docker login 65.2.154.146 -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
+        run: echo "${{ secrets.HARBOR_PWD }}" | docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
