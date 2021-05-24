@@ -24,9 +24,6 @@ jobs:
         working-directory: ./adservice
     env:
       DOCKER_CONTENT_TRUST="${{ secrets.DOCKER_CONTENT_TRUST }}"
-      DOCKER_CONTENT_TRUST_SERVER="${{ secrets.DOCKER_CONTENT_TRUST_SERVER }}"
-      DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE="${{ secrets.DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE }}"
-      DOCKER_CONTENT_TRUST_ROOT_PASSPHRASE="${{ secrets.DOCKER_CONTENT_TRUST_ROOT_PASSPHRASE }}"
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
