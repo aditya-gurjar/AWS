@@ -35,7 +35,7 @@ jobs:
       
 #       Builds the docker image
       - name: build 
-        run: sudo docker build ./ -t adservice
+        run: sudo docker build ./ -t adservice:2.0
 #        Testing purposes
 #       - name: test
 #         run: sudo docker images
@@ -44,7 +44,7 @@ jobs:
         run: echo "${{ secrets.HARBOR_PWD }}" | docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
 
       - name: tag the image
-        run: docker tag adservice harbordemo351.tk/demo/adservice
+        run: docker tag adservice:2.0 harbordemo351.tk/demo/adservice:2.0
       
       - name: push the image
-        run: docker push harbordemo351.tk/demo/adservice
+        run: docker push harbordemo351.tk/demo/adservice:2.0
