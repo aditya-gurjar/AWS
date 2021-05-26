@@ -39,16 +39,12 @@ jobs:
 #        Testing purposes
 #       - name: test
 #         run: sudo docker images
-    
-      - name: before logging in
-        run: sudo docker images
         
       - name: login to harbor
         run: echo "${{ secrets.HARBOR_PWD }}" | docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
-      
-      
-      - name: after logging in
-        run: sudo docker images
+
+      - name: get images
+        run: curl -i -k -X GET "https://harbor.mycompany.local/api/search?q=library/
 #       - name: tag the image
 #         run: docker tag adservice:1.0 harbordemo351.tk/demo/adservice:1.0
       
