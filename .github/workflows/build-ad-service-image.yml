@@ -44,7 +44,7 @@ jobs:
         run: echo "${{ secrets.HARBOR_PWD }}" | docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
 
       - name: get images
-        run: curl -i -k -X GET "https://harbor.mycompany.local/api/search?q=library/
+        run: curl -i -k -X GET "https://harbordemo351.tk/api/search?q=demo/
 #       - name: tag the image
 #         run: docker tag adservice:1.0 harbordemo351.tk/demo/adservice:1.0
       
