@@ -44,7 +44,7 @@ jobs:
         run: echo "${{ secrets.HARBOR_PWD }}" | docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
 
       - name: tag the image
-        run: docker tag adservice:1.0 harbordemo351.tk/demo/adservice
+        run: docker tag adservice harbordemo351.tk/demo/adservice
       
       - name: push the image
         run: docker push harbordemo351.tk/demo/adservice
