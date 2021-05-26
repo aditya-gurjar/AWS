@@ -33,6 +33,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
+      - name: set alias
+        run: alias notary="notary -s https://harbordemo351.tk -d ~/.docker/trust --tlscacert /etc/docker/certs.d/harbordemo351.tk/ca.crt"
 #       Builds the docker image
       - name: build 
         run: sudo docker build ./ -t adservice
