@@ -7,7 +7,7 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     paths: 
-      - 'src/checkout/**'
+      - 'src/checkoutservice/**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -21,7 +21,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./src/checkout
+        working-directory: ./src/checkoutservice
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -30,7 +30,7 @@ jobs:
 
 #       Builds the docker image
       - name: build 
-        run: sudo docker build ./ -t checkout
+        run: sudo docker build ./ -t checkoutservice
 #        Testing purposes
 #       - name: test
 #         run: sudo docker images
@@ -39,7 +39,7 @@ jobs:
         run: echo "${{ secrets.HARBOR_PWD }}" | docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
 
       - name: tag the image
-        run: docker tag checkout harbordemo351.tk/demo/checkout
+        run: docker tag checkoutservice harbordemo351.tk/demo/checkoutservice
       
       - name: push the image
-        run: docker push harbordemo351.tk/demo/checkout
+        run: docker push harbordemo351.tk/demo/checkoutservice
