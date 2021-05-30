@@ -50,10 +50,6 @@ jobs:
     needs: build-docker-image
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./kubernetes-manifests
-
     steps:
       - uses: actions/checkout@v2
 
@@ -69,7 +65,7 @@ jobs:
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
-          args: apply -f ./kubernetes-manifests.yaml
+          args: apply -f kubernetes-manifests/kubernetes-manifests.yaml
 
     
 #       - name: Configure AWS Credentials
