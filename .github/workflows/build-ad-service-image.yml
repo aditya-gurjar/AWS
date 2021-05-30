@@ -64,7 +64,7 @@ jobs:
 #       - run: sudo chown $(id -u):$(id -g) $HOME/.kube/config
         
       - name: verify kubectl
-        run: kubectl config view
+        run: kubectl get svc
         
 #       - name: Verify login
 #         run: kubectl --kubeconfig="$HOME/.kube/config" get nodes
