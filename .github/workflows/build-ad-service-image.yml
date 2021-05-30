@@ -53,11 +53,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           # aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} # if you have/need it
           aws-region: ap-south-1
-    
-      - name: download kubectl
-        run: curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-      - name: install kubectl
-        run: sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
         
 #       - run: mkdir -p $HOME/.kube
 #       - run: sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
