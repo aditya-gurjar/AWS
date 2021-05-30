@@ -46,7 +46,7 @@ jobs:
       - name: push the image
         run: docker push harbordemo351.tk/demo/adservice
   
-  login to aws:
+  login-to-aws:
     runs-on: ubuntu-latest
     steps:
       - name: Configure AWS Credentials
