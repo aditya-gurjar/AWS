@@ -55,7 +55,7 @@ jobs:
           aws-region: ap-south-1
     
       - name: verify kubectl
-        run: $ [[ ! -z "$KUBECONFIG" ]] && echo "$KUBECONFIG" || echo "~/.kube/config"
+        run: kubectl get pods --all-namespaces
         
 #       - name: Verify login
 #         run: kubectl --kubeconfig="$HOME/.kube/config" get nodes
