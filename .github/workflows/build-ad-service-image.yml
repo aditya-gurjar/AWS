@@ -60,7 +60,7 @@ jobs:
         run: sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
         
       - name: verify kubectl
-        run: kubectl get pods --all-namespaces
+        run: kubectl get nodes
         
 #       - name: Verify login
 #         run: kubectl --kubeconfig="$HOME/.kube/config" get nodes
