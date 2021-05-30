@@ -55,4 +55,4 @@ jobs:
           aws-region: ap-south-1
           
       - name: Verify login
-        run: kubectl --kubeconfig="~/.kube/config" get nodes
+        run: kubectl --kubeconfig="$HOME/.kube/config" get nodes
