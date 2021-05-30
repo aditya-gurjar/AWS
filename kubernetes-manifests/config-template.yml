@@ -1,0 +1,30 @@
+apiVersion: v1
+clusters:
+- cluster:
+    server: https://F7B60FB42F4EB5D393AC1F02717A610E.gr7.ap-south-1.eks.amazonaws.com
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJeE1EVXlPREl4TkRrMU1Wb1hEVE14TURVeU5qSXhORGsxTVZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBS3RtCmNieS8wNE0xRnV4TnB2dFNUWGRPZlVSWis3Rm4wY1d3YldCdEg3a01sbU16T09EMENlMHJMYU5ITklLVXV0TjEKOEJJdjJHd2pBbWZOWTZqNnp3bjFONFFIaHFDTmtZeklUSVoxaFNOYzcwdTJRU2cvNXdoRnlpbDAvdmZCdVg0QQp3akRRaXhpUjBtR3FJU2JibTJ2ckNlbUxDRWd4TTlGbWtDSXdzVXdpUWlZbE9DUGYzVURmMjJKYm1ZdUNpRDkzCml3TmJhRnZOamhMaWVlcnhyTGxMYmZTU2NNUDlNSTN6YjRFTVRvYm1PRjJOS1ZOVFNaMWtPSWtpQVpCdVBvV2wKdk5EWFZiUzV0WlB1SWsxWDZQeUJtdHJMZ0VKL3c4MG8zUEFkck5QK2hqV1JFMnBqdlh2MWlCRXRDZFJpMUJCawpHQklXbGtWRGNXSkY2SHZrOEFjQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFIQVBZRDB0VmFVTXNiZlNjOU5BaG90UEczT2MKcWhpMEs1Y3UxcHZXK0U1QjNQa09LcUk1ZG9KQzlvRUw0M0t4VitncXRXMU4zblJRTUUwdkhxTG91eHdVVGVOdwo0N3BiOHRxR2lIK3luSG13UUNpanFwaTNlbW1mOW05QWZmOW9HK3VhK29XNzlmYUQ2elNzSDd6endpb0NlNThvCmRrZ25QUml3N05EdmNvLzdwaTdrZTlMM20xVlp1UzhDRE9ZWnpOaXIvOGtSTFFtN1g3dDF1dE5YWGVpQzdhUncKRWNXMVhKMGNyZXRRbTRIalFoVE5PdEM1SEFsckN3NEU0Ynl5SUZqSTlJZjVjbGR2WWcvRmFhU3dVd3BHOGtTLwp4cmwvaTV2b0gyOWJDK1RXTWVodHhSdlVubjJscy9NQS9JNWlPWTJHZG5EWksvdmxCYmQ5WXc3bWZGQT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    user: aws
+  name: aws
+current-context: aws
+kind: Config
+preferences: {}
+users:
+- name: aws
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1alpha1
+      command: aws
+      args:
+        - "eks"
+        - "get-token"
+        - "--cluster-name"
+        - "my-cluster"
+        # - "--role-arn"
+        # - "<role-arn>"
+      # env:
+        # - name: AWS_PROFILE
+        #   value: "<aws-profile>"
