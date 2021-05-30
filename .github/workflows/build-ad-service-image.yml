@@ -46,13 +46,13 @@ jobs:
 #       - name: push the image
 #         run: docker push harbordemo351.tk/demo/adservice
         
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} # if you have/need it
-          aws-region: ap-south-1
+#       - name: Configure AWS Credentials
+#         uses: aws-actions/configure-aws-credentials@v1
+#         with:
+#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           # aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} # if you have/need it
+#           aws-region: ap-south-1
         
 #       - run: mkdir -p $HOME/.kube
 #       - run: sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
