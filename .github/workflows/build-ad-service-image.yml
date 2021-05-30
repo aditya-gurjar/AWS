@@ -59,12 +59,12 @@ jobs:
       - name: install kubectl
         run: sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
         
-      - run: mkdir -p $HOME/.kube
-      - run: sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-      - run: sudo chown $(id -u):$(id -g) $HOME/.kube/config
+#       - run: mkdir -p $HOME/.kube
+#       - run: sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+#       - run: sudo chown $(id -u):$(id -g) $HOME/.kube/config
         
       - name: verify kubectl
-        run: kubectl get nodes
+        run: kubectl config view
         
 #       - name: Verify login
 #         run: kubectl --kubeconfig="$HOME/.kube/config" get nodes
