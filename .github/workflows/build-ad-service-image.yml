@@ -58,48 +58,41 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
 
-      - name: Trigger deploy
-        uses: Consensys/kubernetes-action@master
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: apply -f kubernetes-manifests/kubernetes-manifests.yaml
-      
-#       - name: Get the pod name
+#       - name: Trigger deploy
 #         uses: Consensys/kubernetes-action@master
 #         env:
 #           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
 #         with:
-#           args: get pods -o=name | grep adservice | sed "s/^.\{4\}//"
-#           run: echo "::set-output name=pod-name::$(mix test)\n"
+#           args: apply -f kubernetes-manifests/kubernetes-manifests.yaml
       
-      - name: Update particular pod
-        uses: Consensys/kubernetes-action@master
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: delete pods -l app=adservice
+# #       - name: Get the pod name
+# #         uses: Consensys/kubernetes-action@master
+# #         env:
+# #           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+# #         with:
+# #           args: get pods -o=name | grep adservice | sed "s/^.\{4\}//"
+# #           run: echo "::set-output name=pod-name::$(mix test)\n"
+      
+#       - name: Update particular pod
+#         uses: Consensys/kubernetes-action@master
+#         env:
+#           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+#         with:
+#           args: delete pods -l app=adservice
           
-  build-int:
+  Polaris:
     needs: deploy-to-eks
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v2
-      - name: Setup polaris
-        uses: ./.github/actions/setup-polaris
-        with:
-          version: 3.0.3
-      - name: Use command
-        run: polaris version
-
-  build-ext:
-    needs: build-int
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup polaris
-        uses: fairwindsops/polaris/.github/actions/setup-polaris@master
-        with:
-          version: 3.0.3
-      - name: Use command
-        run: polaris audit
+      
+      - name: install polaris
+        run: |
+          brew tap FairwindsOps/tap
+          brew install FairwindsOps/tap/polaris
+          polaris version
+      
+      - name: audit
+        run: polaris audit --audit-path kubernetes-manifests/kubernetes-manifests.yaml --format=pretty
+    
