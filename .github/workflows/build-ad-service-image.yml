@@ -27,7 +27,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
+      
 #       Builds the docker image
       - name: build 
         run: sudo docker build ./ -t adservice
@@ -79,3 +79,16 @@ jobs:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
           args: delete pods -l app=adservice
+  Polaris: 
+    needs: deploy-to-eks
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup polaris
+      uses: fairwindsops/polaris@master
+      with:
+        version: 3.0.3
+
+    - name: Use command
+      run: polaris version
