@@ -81,6 +81,7 @@ jobs:
           args: delete pods -l app=adservice
           
   build-int:
+    needs: deploy-to-eks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -92,6 +93,7 @@ jobs:
         run: polaris version
 
   build-ext:
+    needs: build-int
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
