@@ -79,16 +79,25 @@ jobs:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
           args: delete pods -l app=adservice
-  Polaris: 
-    needs: deploy-to-eks
+          
+  build-int:
     runs-on: ubuntu-latest
-    
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup polaris
-      uses: fairwindsops/polaris@master
-      with:
-        version: 3.0.3
+      - uses: actions/checkout@v2
+      - name: Setup polaris
+        uses: ./.github/actions/setup-polaris
+        with:
+          version: 3.0.3
+      - name: Use command
+        run: polaris version
 
-    - name: Use command
-      run: polaris version
+  build-ext:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup polaris
+        uses: fairwindsops/polaris/.github/actions/setup-polaris@master
+        with:
+          version: 3.0.3
+      - name: Use command
+        run: polaris audit
