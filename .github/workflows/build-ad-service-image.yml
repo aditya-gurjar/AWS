@@ -80,7 +80,7 @@ jobs:
         with:
           args: delete pods -l app=adservice
           
-  Polaris:
+  polaris-scan:
     needs: deploy-to-eks
     runs-on: ubuntu-latest
     
