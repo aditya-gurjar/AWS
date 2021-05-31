@@ -681,6 +681,7 @@ spec:
       containers:
       - name: server
         image: harbordemo351.tk/demo/adservice:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 9555
         env:
