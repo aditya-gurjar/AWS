@@ -79,3 +79,19 @@ jobs:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
           args: delete pods -l app=shippingservice
+          
+  Polaris:
+    needs: deploy-to-eks
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: install polaris
+        run: |
+          brew tap FairwindsOps/tap
+          brew install FairwindsOps/tap/polaris
+          polaris version
+      
+      - name: audit
+        run: polaris audit --audit-path kubernetes-manifests/kubernetes-manifests.yaml --format=pretty
