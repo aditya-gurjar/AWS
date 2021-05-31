@@ -28,23 +28,23 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-# #       Builds the docker image
-#       - name: build 
-#         run: sudo docker build ./ -t adservice
-# #        Testing purposes
-# #       - name: test
-# #         run: sudo docker images
-#       - name: check kubectl installation
-#         run: kubectl version --client
+#       Builds the docker image
+      - name: build 
+        run: sudo docker build ./ -t adservice
+#        Testing purposes
+#       - name: test
+#         run: sudo docker images
+      - name: check kubectl installation
+        run: kubectl version --client
         
-#       - name: login to harbor
-#         run: echo "${{ secrets.HARBOR_PWD }}" | docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
+      - name: login to harbor
+        run: echo "${{ secrets.HARBOR_PWD }}" | docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
 
-#       - name: tag the image
-#         run: docker tag adservice harbordemo351.tk/demo/adservice
+      - name: tag the image
+        run: docker tag adservice harbordemo351.tk/demo/adservice
       
-#       - name: push the image
-#         run: docker push harbordemo351.tk/demo/adservice
+      - name: push the image
+        run: docker push harbordemo351.tk/demo/adservice
 
   deploy:
     needs: build-docker-image
