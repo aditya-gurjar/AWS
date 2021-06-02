@@ -37,12 +37,12 @@ jobs:
               helm repo add falcosecurity https://falcosecurity.github.io/charts
               helm repo update
       
-      - name: List pods
+      - name: trying smn
         uses: Consensys/kubernetes-action@master
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
-          args: get pods
+          args: config view --raw >~/.kube/config
       
       - name: install falco
         run: helm install falco --set falco.jsonOutput=true falcosecurity/falco
