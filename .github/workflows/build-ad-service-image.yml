@@ -46,6 +46,10 @@ jobs:
       - name: tag the image
         run: docker tag adservice harbordemo351.tk/demo/adservice
       
+      - name: try
+        run: docker trust key load key.pem
+      
+      
       - name: push the image
         run: docker push harbordemo351.tk/demo/adservice
 
