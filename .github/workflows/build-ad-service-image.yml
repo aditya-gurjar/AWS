@@ -50,11 +50,14 @@ jobs:
       - name: login to harbor
         run: echo "${{ secrets.HARBOR_PWD }}" | docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
 
-      - name: tag the image
-        run: docker tag adservice harbordemo351.tk/demo/adservice
-      
-      - name: push the image
-        run: docker push harbordemo351.tk/demo/adservice
+      - name: generate key
+        run: docker trust key generate adi
+    
+      - name: add signer
+        run: docker trust signer add --key adi.pub adi harbordemo351.tk/demo/adservice
+        
+      - name: tag & push the image
+        run: docker trust sign harbordemo351.tk/demo/adservice
 
 #   deploy-to-eks:
 #     needs: build-docker-image-and-push-to-harbor
