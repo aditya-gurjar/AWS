@@ -49,55 +49,55 @@ jobs:
       - name: push the image
         run: docker push harbordemo351.tk/demo/adservice
 
-  deploy-to-eks:
-    needs: build-docker-image-and-push-to-harbor
-    runs-on: ubuntu-latest
+#   deploy-to-eks:
+#     needs: build-docker-image-and-push-to-harbor
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
+#     steps:
+#       - uses: actions/checkout@v2
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1
+#       - name: Configure AWS Credentials
+#         uses: aws-actions/configure-aws-credentials@v1
+#         with:
+#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           aws-region: ap-south-1
 
-      - name: Trigger deploy
-        uses: Consensys/kubernetes-action@master
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: apply -f kubernetes-manifests/kubernetes-manifests.yaml
-      
-#       - name: Get the pod name
+#       - name: Trigger deploy
 #         uses: Consensys/kubernetes-action@master
 #         env:
 #           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
 #         with:
-#           args: get pods -o=name | grep adservice | sed "s/^.\{4\}//"
-#           run: echo "::set-output name=pod-name::$(mix test)\n"
+#           args: apply -f kubernetes-manifests/kubernetes-manifests.yaml
       
-      - name: Update particular pod
-        uses: Consensys/kubernetes-action@master
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: delete pods -l app=adservice
+# #       - name: Get the pod name
+# #         uses: Consensys/kubernetes-action@master
+# #         env:
+# #           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+# #         with:
+# #           args: get pods -o=name | grep adservice | sed "s/^.\{4\}//"
+# #           run: echo "::set-output name=pod-name::$(mix test)\n"
+      
+#       - name: Update particular pod
+#         uses: Consensys/kubernetes-action@master
+#         env:
+#           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+#         with:
+#           args: delete pods -l app=adservice
           
-  polaris-scan:
-    needs: deploy-to-eks
-    runs-on: ubuntu-latest
+#   polaris-scan:
+#     needs: deploy-to-eks
+#     runs-on: ubuntu-latest
     
-    steps:
-      - uses: actions/checkout@v2
+#     steps:
+#       - uses: actions/checkout@v2
       
-      - name: install polaris
-        run: |
-          brew tap FairwindsOps/tap
-          brew install FairwindsOps/tap/polaris
-          polaris version
+#       - name: install polaris
+#         run: |
+#           brew tap FairwindsOps/tap
+#           brew install FairwindsOps/tap/polaris
+#           polaris version
       
-      - name: audit
-        run: polaris audit --audit-path kubernetes-manifests/kubernetes-manifests.yaml --format=pretty
+#       - name: audit
+#         run: polaris audit --audit-path kubernetes-manifests/kubernetes-manifests.yaml --format=pretty
     
