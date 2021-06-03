@@ -53,6 +53,9 @@ jobs:
       - name: generate key
         run: docker trust key generate adi
     
+      - name: list
+        run: docker trust inspect --pretty harbordemo351.tk/demo/adservice
+    
       - name: add signer
         run: docker trust signer add --key adi.pub adi harbordemo351.tk/demo/adservice
         
