@@ -17,7 +17,7 @@ jobs:
   # This workflow contains a single job called "build"
   build-docker-image-and-push-to-harbor:
     env:
-#       DOCKER_CONTENT_TRUST: 1
+      DOCKER_CONTENT_TRUST: 1
       DOCKER_CONTENT_TRUST_SERVER: "${{ secrets.DOCKER_CONTENT_TRUST_SERVER }}"
       
       NOTARY_ROOT_PASSPHRASE: "${{ secrets.NOTARY_ROOT_PASSPHRASE }}"
