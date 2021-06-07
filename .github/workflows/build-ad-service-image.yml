@@ -42,7 +42,7 @@ jobs:
       
 #       Builds the docker image
       - name: build 
-        run: sudo docker build ./ -t adservice
+        run: sudo docker build --no-cache ./ -t adservice
 #        Testing purposes
 #       - name: test
 #         run: sudo docker images
