@@ -48,13 +48,13 @@ jobs:
 #         run: sudo docker images
         
       - name: login to harbor
-        run: echo "${{ secrets.HARBOR_PWD }}" | docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
+        run: echo "${{ secrets.HARBOR_PWD }}" | sudo ocker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
         
       - name: tag the image
-        run: docker tag cartservice harbordemo351.tk/demo1/cartservice
+        run: sudo docker tag cartservice harbordemo351.tk/demo1/cartservice
       
       - name: push the image
-        run: docker push harbordemo351.tk/demo1/cartservice
+        run: sudo docker push harbordemo351.tk/demo1/cartservice
 
 #   deploy-to-eks:
 #     needs: build-docker-image-and-push-to-harbor
