@@ -54,7 +54,7 @@ jobs:
         run: sudo docker tag adservice harbordemo351.tk/demo1/adservice
       
       - name: push the image
-        run: sudo docker push harbordemo351.tk/demo1/adservice
+        run: sudo docker trust sign harbordemo351.tk/demo1/adservice
 
 #   deploy-to-eks:
 #     needs: build-docker-image-and-push-to-harbor
