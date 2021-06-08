@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: install
-        run: gem install brakeman
+        run: sudo gem install brakeman
     
       - name: run tests
         run: brakeman
