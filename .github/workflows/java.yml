@@ -1,4 +1,4 @@
-name: Run Brakeman for java application
+name: Run SpotBugs for java application
 
 # Controls when the action will run. 
 on:
@@ -30,4 +30,4 @@ jobs:
         run: |
               git clone https://github.com/spotbugs/spotbugs.git
               cd spotbugs
-              gradlew
+              ./gradlew
