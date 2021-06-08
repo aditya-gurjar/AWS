@@ -30,4 +30,4 @@ jobs:
         run: sudo gem install brakeman
     
       - name: run tests
-        run: brakeman --no-exit-on-warn
+        run: brakeman --no-exit-on-warn --color
