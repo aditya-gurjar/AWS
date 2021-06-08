@@ -27,10 +27,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: install
-        run: | 
-              git clone https://github.com/presidentbeef/brakeman.git
-              cd brakeman
-              docker build . -t brakeman
+        run: gem install brakeman
     
       - name: run tests
         run: brakeman
