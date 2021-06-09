@@ -106,3 +106,24 @@ jobs:
       
 #       - name: audit
 #         run: polaris audit --audit-path kubernetes-manifests/kubernetes-manifests.yaml --format=pretty
+
+
+  kubeaudit:
+    # The type of runner that the job will run on
+    needs: deploy-to-eks
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./kubernetes-manifests
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      
+      - name: install
+        run: brew install kubeaudit
+    
+      - name: run tests
+        run: kubeaudit all -f ./kubernetes-manifests.yaml || true
