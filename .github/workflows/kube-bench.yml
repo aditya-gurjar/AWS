@@ -32,7 +32,9 @@ jobs:
               docker build -t k8s/kube-bench .
               docker tag k8s/kube-bench:latest harbordemo351.tk/demo/kube-bench
               docker push harbordemo351.tk/demo/kube-bench
-      
+      - name: dir
+        run: ls
+        
       - name: deploy as a job
         uses: Consensys/kubernetes-action@master
         env:
