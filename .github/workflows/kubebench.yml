@@ -24,17 +24,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - name: download kube-bench image and push
-        run: |
-              git clone https://github.com/aquasecurity/kube-bench.git
-              cd kube-bench
-              echo "${{ secrets.HARBOR_PWD }}" | sudo docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
-              sudo docker build -t k8s/kube-bench .
-              sudo docker tag k8s/kube-bench:latest harbordemo351.tk/demo/kube-bench
-              sudo docker push harbordemo351.tk/demo/kube-bench
-      - name: dir
-        run: ls
-        
+#       - name: download kube-bench image and push
+#         run: |
+#               git clone https://github.com/aquasecurity/kube-bench.git
+#               cd kube-bench
+#               echo "${{ secrets.HARBOR_PWD }}" | sudo docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
+#               sudo docker build -t k8s/kube-bench .
+#               sudo docker tag k8s/kube-bench:latest harbordemo351.tk/demo/kube-bench
+#               sudo docker push harbordemo351.tk/demo/kube-bench
+              
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -43,7 +41,11 @@ jobs:
           aws-region: ap-south-1
       
       - name: deploy as a job
-        run: kubectl apply -f kube-bench/job-eks.yaml
+        uses: Consensys/kubernetes-action@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: apply -f kube-bench/kube-bench.yaml
           
       - name: find the pod and publish its logs
-        run: kubectl logs | kubectl get pods --selector=job-name=pi --output=jsonpath='{.items[*].metadata.name}'
+        run: kubectl logs $(kubectl get pods --selector=job-name=pi --output=jsonpath='{.items[*].metadata.name}')
