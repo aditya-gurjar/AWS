@@ -117,3 +117,61 @@ jobs:
     
       - name: run tests
         run: kubeaudit all -f ./kubernetes-manifests.yaml || true
+
+
+  kube-bench:
+    # The type of runner that the job will run on
+    needs: deploy-to-eks
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./kube-bench
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      
+      - name: download kube-bench image and push
+        run: |
+              git clone https://github.com/aquasecurity/kube-bench.git
+              cd kube-bench
+              echo "${{ secrets.HARBOR_PWD }}" | sudo docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
+              sudo docker build -t k8s/kube-bench .
+              sudo docker tag k8s/kube-bench:latest harbordemo351.tk/demo/kube-bench
+              sudo docker push harbordemo351.tk/demo/kube-bench
+              
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+          
+      - name: delete previous job if present
+        uses: Consensys/kubernetes-action@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: delete job kube-bench --ignore-not-found=true
+
+      - name: deploy as job
+        uses: Consensys/kubernetes-action@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: apply -f kube-bench/job-eks.yaml
+
+      - name: find the pod 
+        uses: Consensys/kubernetes-action@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: get pods -l job-name=kube-bench -o custom-columns=:metadata.name 
+      
+      - name: publish the logs
+        uses: Consensys/kubernetes-action@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: logs job/kube-bench
