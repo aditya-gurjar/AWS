@@ -40,6 +40,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
       
+      - name: Delete previous pod
+        uses: Consensys/kubernetes-action@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: delete pods --selector job-name=kube-bench
+          
       - name: deploy as a job
         uses: Consensys/kubernetes-action@master
         env:
