@@ -40,12 +40,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
       
-      - name: deploy as a job
-        uses: Consensys/kubernetes-action@master
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: apply -f kube-bench/job-eks.yaml
+#       - name: deploy as a job
+#         uses: Consensys/kubernetes-action@master
+#         env:
+#           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+#         with:
+#           args: apply -f kube-bench/job-eks.yaml
       
       - name: install xclip if not already present
         run: sudo apt-get install xclip
@@ -55,11 +55,15 @@ jobs:
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
-          args: get pods -l job-name=kube-bench -o custom-columns=:metadata.name | tr -d '\n' | xclip
-
-      - name: publish the logs
-        uses: Consensys/kubernetes-action@master
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: logs $(xlip -o)
+          args: get pods -l job-name=kube-bench -o custom-columns=:metadata.name 
+          run: xlcip
+  
+      - name: test
+        run: xlip -o
+      
+#       - name: publish the logs
+#         uses: Consensys/kubernetes-action@master
+#         env:
+#           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+#         with:
+#           args: logs $(xlip -o)
