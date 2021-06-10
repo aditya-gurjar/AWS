@@ -14,7 +14,7 @@ jobs:
   # This workflow contains a single job called "build"
   kube-bench:
     # The type of runner that the job will run on
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     defaults:
       run:
@@ -46,6 +46,20 @@ jobs:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
           args: apply -f kube-bench/kube-bench.yaml
-          
-      - name: find the pod and publish its logs
-        run: kubectl logs $(kubectl get pods --selector=job-name=pi --output=jsonpath='{.items[*].metadata.name}')
+      
+      - name: install xclip if not already present
+        run: sudo apt-get install xclip
+        
+      - name: find the pod 
+        uses: Consensys/kubernetes-action@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: get pods -l job-name=kube-bench -o custom-columns=:metadata.name | tr -d '\n' | xclip
+
+      - name: publish the logs
+        uses: Consensys/kubernetes-action@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: logs $(xlip -o)
