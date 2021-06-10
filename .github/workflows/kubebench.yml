@@ -40,13 +40,20 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
           
-      - name: deploy as a job
+      - name: delete previous job if present
         uses: Consensys/kubernetes-action@master
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
-          args: apply -f --force=true kube-bench/job-eks.yaml
-        
+          args: delete job kube-bench --ignore-not-found=true
+
+      - name: deploy as job
+        uses: Consensys/kubernetes-action@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: apply -f kube-bench/job-eks.yaml
+
       - name: find the pod 
         uses: Consensys/kubernetes-action@master
         env:
