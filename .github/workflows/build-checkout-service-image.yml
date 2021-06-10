@@ -119,6 +119,7 @@ jobs:
         
   kube-bench:
     # The type of runner that the job will run on
+    needs: deploy-to-eks
     runs-on: ubuntu-latest
 
     defaults:
