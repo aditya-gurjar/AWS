@@ -56,10 +56,11 @@ jobs:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
           args: get pods -l job-name=kube-bench -o custom-columns=:metadata.name 
-          run: xlcip
+          run: | 
+                xlcip
   
       - name: test
-        run: xlip -o
+        run: xclip -o
       
 #       - name: publish the logs
 #         uses: Consensys/kubernetes-action@master
