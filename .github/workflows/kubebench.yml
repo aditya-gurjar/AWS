@@ -45,7 +45,7 @@ jobs:
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
-          args: apply -f kube-bench/kube-bench.yaml
+          args: apply -f kube-bench/job-eks.yaml
       
       - name: install xclip if not already present
         run: sudo apt-get install xclip
