@@ -1,4 +1,4 @@
-name: Run SpotBugs for java application
+name: Run Chcekstyle for java applications.
 
 # Controls when the action will run. 
 on:
@@ -13,14 +13,9 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  spotbugs:
+  checkstyle:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: ./circleci-demo-java-spring-master
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -28,6 +23,5 @@ jobs:
       
       - name: install
         run: |
-              git clone https://github.com/spotbugs/spotbugs.git
-              cd spotbugs
-              ./gradlew
+              wget https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.43/checkstyle-8.43-all.jar
+              java -jar checkstyle-8.43-all.jar -c /sun_checks.xml ./circleci-demo-java-spring-master -f sarif
