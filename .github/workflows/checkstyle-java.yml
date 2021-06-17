@@ -24,4 +24,4 @@ jobs:
       - name: install
         run: |
               wget https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.43/checkstyle-8.43-all.jar
-              java -jar checkstyle-8.43-all.jar -c /sun_checks.xml ./circleci-demo-java-spring-master -f 
+              java -jar checkstyle-8.43-all.jar -c /sun_checks.xml ./circleci-demo-java-spring-master -f xml
