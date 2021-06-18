@@ -17,7 +17,7 @@ jobs:
   # This workflow contains a single job called "build"
   build-docker-image-and-push-to-harbor:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     env:
       DOCKER_CONTENT_TRUST: 1
       DOCKER_CONTENT_TRUST_SERVER: "https://harbordemo351.tk:4443"
