@@ -55,7 +55,7 @@ jobs:
 #       - name: push the image
 #         run: sudo docker push harbordemo351.tk/demo/frontend
       - name: l
-        run: docker trust signer add --key adi.pub adi harbordemo351.tk/demo7/frontend:v7 
+        run: sudo docker trust signer add --key adi.pub adi harbordemo351.tk/demo7/frontend:v7 
         
       - name: bleh
         run: sudo docker trust sign harbordemo351.tk/demo7/frontend:v7
