@@ -52,8 +52,11 @@ jobs:
       - name: tag the image
         run: sudo docker tag frontend harbordemo351.tk/demo/frontend
       
-      - name: push the image
-        run: sudo docker push harbordemo351.tk/demo/frontend
+#       - name: push the image
+#         run: sudo docker push harbordemo351.tk/demo/frontend
+        
+      - name: bleh
+        run: docker trust sign harbordemo351.tk/demo/frontend
   
 #   deploy-to-eks:
 #     needs: build-docker-image-and-push-to-harbor
