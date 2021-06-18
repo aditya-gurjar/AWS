@@ -56,7 +56,7 @@ jobs:
 #         run: sudo docker push harbordemo351.tk/demo/frontend
         
       - name: bleh
-        run: docker trust sign harbordemo351.tk/demo/frontend:latest
+        run: sudo docker trust sign harbordemo351.tk/demo/frontend:latest
   
 #   deploy-to-eks:
 #     needs: build-docker-image-and-push-to-harbor
