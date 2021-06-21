@@ -82,8 +82,8 @@
 [0m-- [31m[error] [0mAppArmorAnnotationMissing
    Message: AppArmor annotation missing. The annotation 'container.apparmor.security.beta.kubernetes.io/server' should be added.
    Metadata:
-      Container: server
       MissingAnnotation: container.apparmor.security.beta.kubernetes.io/server
+      Container: server
 
 -- [31m[error] [0mAutomountServiceAccountTokenTrueAndDefaultSA
    Message: Default service account with token mounted. automountServiceAccountToken should be set to 'false' on either the ServiceAccount or on the PodSpec or a non-default service account should be used.
@@ -442,8 +442,8 @@
 [0m-- [31m[error] [0mAppArmorAnnotationMissing
    Message: AppArmor annotation missing. The annotation 'container.apparmor.security.beta.kubernetes.io/server' should be added.
    Metadata:
-      Container: server
       MissingAnnotation: container.apparmor.security.beta.kubernetes.io/server
+      Container: server
 
 -- [31m[error] [0mAutomountServiceAccountTokenTrueAndDefaultSA
    Message: Default service account with token mounted. automountServiceAccountToken should be set to 'false' on either the ServiceAccount or on the PodSpec or a non-default service account should be used.
