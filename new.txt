@@ -1,0 +1,671 @@
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: v1
+[0m[36m  kind: Service
+[0m[36m
+--------------------------------------------
+
+[0m-- [33m[warning] [0mUnsupported resource
+   Message: Resource is not currently supported.
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: apps/v1
+[0m[36m  kind: Deployment
+[0m[36m  metadata:
+[0m[36m    name: checkoutservice
+[0m[36m
+--------------------------------------------
+
+[0m-- [31m[error] [0mAppArmorAnnotationMissing
+   Message: AppArmor annotation missing. The annotation 'container.apparmor.security.beta.kubernetes.io/server' should be added.
+   Metadata:
+      Container: server
+      MissingAnnotation: container.apparmor.security.beta.kubernetes.io/server
+
+-- [31m[error] [0mAutomountServiceAccountTokenTrueAndDefaultSA
+   Message: Default service account with token mounted. automountServiceAccountToken should be set to 'false' on either the ServiceAccount or on the PodSpec or a non-default service account should be used.
+
+-- [31m[error] [0mCapabilityOrSecurityContextMissing
+   Message: Security Context not set. The Security Context should be specified and all Capabilities should be dropped by setting the Drop list to ALL.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mRunAsNonRootPSCNilCSCNil
+   Message: runAsNonRoot should be set to true or runAsUser should be set to a value > 0 either in the container SecurityContext or PodSecurityContext.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mAllowPrivilegeEscalationNil
+   Message: allowPrivilegeEscalation not set which allows privilege escalation. It should be set to 'false'.
+   Metadata:
+      Container: server
+
+-- [33m[warning] [0mPrivilegedNil
+   Message: privileged is not set in container SecurityContext. Privileged defaults to 'false' but it should be explicitly set to 'false'.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mReadOnlyRootFilesystemNil
+   Message: readOnlyRootFilesystem is not set in container SecurityContext. It should be set to 'true'.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mSeccompAnnotationMissing
+   Message: Seccomp annotation is missing. The annotation seccomp.security.alpha.kubernetes.io/pod: runtime/default should be added.
+   Metadata:
+      MissingAnnotation: seccomp.security.alpha.kubernetes.io/pod
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: v1
+[0m[36m  kind: Service
+[0m[36m
+--------------------------------------------
+
+[0m-- [33m[warning] [0mUnsupported resource
+   Message: Resource is not currently supported.
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: apps/v1
+[0m[36m  kind: Deployment
+[0m[36m  metadata:
+[0m[36m    name: recommendationservice
+[0m[36m
+--------------------------------------------
+
+[0m-- [31m[error] [0mAppArmorAnnotationMissing
+   Message: AppArmor annotation missing. The annotation 'container.apparmor.security.beta.kubernetes.io/server' should be added.
+   Metadata:
+      Container: server
+      MissingAnnotation: container.apparmor.security.beta.kubernetes.io/server
+
+-- [31m[error] [0mAutomountServiceAccountTokenTrueAndDefaultSA
+   Message: Default service account with token mounted. automountServiceAccountToken should be set to 'false' on either the ServiceAccount or on the PodSpec or a non-default service account should be used.
+
+-- [31m[error] [0mCapabilityOrSecurityContextMissing
+   Message: Security Context not set. The Security Context should be specified and all Capabilities should be dropped by setting the Drop list to ALL.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mRunAsNonRootPSCNilCSCNil
+   Message: runAsNonRoot should be set to true or runAsUser should be set to a value > 0 either in the container SecurityContext or PodSecurityContext.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mAllowPrivilegeEscalationNil
+   Message: allowPrivilegeEscalation not set which allows privilege escalation. It should be set to 'false'.
+   Metadata:
+      Container: server
+
+-- [33m[warning] [0mPrivilegedNil
+   Message: privileged is not set in container SecurityContext. Privileged defaults to 'false' but it should be explicitly set to 'false'.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mReadOnlyRootFilesystemNil
+   Message: readOnlyRootFilesystem is not set in container SecurityContext. It should be set to 'true'.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mSeccompAnnotationMissing
+   Message: Seccomp annotation is missing. The annotation seccomp.security.alpha.kubernetes.io/pod: runtime/default should be added.
+   Metadata:
+      MissingAnnotation: seccomp.security.alpha.kubernetes.io/pod
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: v1
+[0m[36m  kind: Service
+[0m[36m
+--------------------------------------------
+
+[0m-- [33m[warning] [0mUnsupported resource
+   Message: Resource is not currently supported.
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: apps/v1
+[0m[36m  kind: Deployment
+[0m[36m  metadata:
+[0m[36m    name: frontend
+[0m[36m
+--------------------------------------------
+
+[0m-- [31m[error] [0mAppArmorAnnotationMissing
+   Message: AppArmor annotation missing. The annotation 'container.apparmor.security.beta.kubernetes.io/server' should be added.
+   Metadata:
+      Container: server
+      MissingAnnotation: container.apparmor.security.beta.kubernetes.io/server
+
+-- [31m[error] [0mAutomountServiceAccountTokenTrueAndDefaultSA
+   Message: Default service account with token mounted. automountServiceAccountToken should be set to 'false' on either the ServiceAccount or on the PodSpec or a non-default service account should be used.
+
+-- [31m[error] [0mCapabilityOrSecurityContextMissing
+   Message: Security Context not set. The Security Context should be specified and all Capabilities should be dropped by setting the Drop list to ALL.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mRunAsNonRootPSCNilCSCNil
+   Message: runAsNonRoot should be set to true or runAsUser should be set to a value > 0 either in the container SecurityContext or PodSecurityContext.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mAllowPrivilegeEscalationNil
+   Message: allowPrivilegeEscalation not set which allows privilege escalation. It should be set to 'false'.
+   Metadata:
+      Container: server
+
+-- [33m[warning] [0mPrivilegedNil
+   Message: privileged is not set in container SecurityContext. Privileged defaults to 'false' but it should be explicitly set to 'false'.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mReadOnlyRootFilesystemNil
+   Message: readOnlyRootFilesystem is not set in container SecurityContext. It should be set to 'true'.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mSeccompAnnotationMissing
+   Message: Seccomp annotation is missing. The annotation seccomp.security.alpha.kubernetes.io/pod: runtime/default should be added.
+   Metadata:
+      MissingAnnotation: seccomp.security.alpha.kubernetes.io/pod
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: v1
+[0m[36m  kind: Service
+[0m[36m
+--------------------------------------------
+
+[0m-- [33m[warning] [0mUnsupported resource
+   Message: Resource is not currently supported.
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: v1
+[0m[36m  kind: Service
+[0m[36m
+--------------------------------------------
+
+[0m-- [33m[warning] [0mUnsupported resource
+   Message: Resource is not currently supported.
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: apps/v1
+[0m[36m  kind: Deployment
+[0m[36m  metadata:
+[0m[36m    name: paymentservice
+[0m[36m
+--------------------------------------------
+
+[0m-- [31m[error] [0mAppArmorAnnotationMissing
+   Message: AppArmor annotation missing. The annotation 'container.apparmor.security.beta.kubernetes.io/server' should be added.
+   Metadata:
+      Container: server
+      MissingAnnotation: container.apparmor.security.beta.kubernetes.io/server
+
+-- [31m[error] [0mAutomountServiceAccountTokenTrueAndDefaultSA
+   Message: Default service account with token mounted. automountServiceAccountToken should be set to 'false' on either the ServiceAccount or on the PodSpec or a non-default service account should be used.
+
+-- [31m[error] [0mCapabilityOrSecurityContextMissing
+   Message: Security Context not set. The Security Context should be specified and all Capabilities should be dropped by setting the Drop list to ALL.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mRunAsNonRootPSCNilCSCNil
+   Message: runAsNonRoot should be set to true or runAsUser should be set to a value > 0 either in the container SecurityContext or PodSecurityContext.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mAllowPrivilegeEscalationNil
+   Message: allowPrivilegeEscalation not set which allows privilege escalation. It should be set to 'false'.
+   Metadata:
+      Container: server
+
+-- [33m[warning] [0mPrivilegedNil
+   Message: privileged is not set in container SecurityContext. Privileged defaults to 'false' but it should be explicitly set to 'false'.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mReadOnlyRootFilesystemNil
+   Message: readOnlyRootFilesystem is not set in container SecurityContext. It should be set to 'true'.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mSeccompAnnotationMissing
+   Message: Seccomp annotation is missing. The annotation seccomp.security.alpha.kubernetes.io/pod: runtime/default should be added.
+   Metadata:
+      MissingAnnotation: seccomp.security.alpha.kubernetes.io/pod
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: v1
+[0m[36m  kind: Service
+[0m[36m
+--------------------------------------------
+
+[0m-- [33m[warning] [0mUnsupported resource
+   Message: Resource is not currently supported.
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: apps/v1
+[0m[36m  kind: Deployment
+[0m[36m  metadata:
+[0m[36m    name: productcatalogservice
+[0m[36m
+--------------------------------------------
+
+[0m-- [31m[error] [0mAppArmorAnnotationMissing
+   Message: AppArmor annotation missing. The annotation 'container.apparmor.security.beta.kubernetes.io/server' should be added.
+   Metadata:
+      Container: server
+      MissingAnnotation: container.apparmor.security.beta.kubernetes.io/server
+
+-- [31m[error] [0mAutomountServiceAccountTokenTrueAndDefaultSA
+   Message: Default service account with token mounted. automountServiceAccountToken should be set to 'false' on either the ServiceAccount or on the PodSpec or a non-default service account should be used.
+
+-- [31m[error] [0mCapabilityOrSecurityContextMissing
+   Message: Security Context not set. The Security Context should be specified and all Capabilities should be dropped by setting the Drop list to ALL.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mRunAsNonRootPSCNilCSCNil
+   Message: runAsNonRoot should be set to true or runAsUser should be set to a value > 0 either in the container SecurityContext or PodSecurityContext.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mAllowPrivilegeEscalationNil
+   Message: allowPrivilegeEscalation not set which allows privilege escalation. It should be set to 'false'.
+   Metadata:
+      Container: server
+
+-- [33m[warning] [0mPrivilegedNil
+   Message: privileged is not set in container SecurityContext. Privileged defaults to 'false' but it should be explicitly set to 'false'.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mReadOnlyRootFilesystemNil
+   Message: readOnlyRootFilesystem is not set in container SecurityContext. It should be set to 'true'.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mSeccompAnnotationMissing
+   Message: Seccomp annotation is missing. The annotation seccomp.security.alpha.kubernetes.io/pod: runtime/default should be added.
+   Metadata:
+      MissingAnnotation: seccomp.security.alpha.kubernetes.io/pod
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: v1
+[0m[36m  kind: Service
+[0m[36m
+--------------------------------------------
+
+[0m-- [33m[warning] [0mUnsupported resource
+   Message: Resource is not currently supported.
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: apps/v1
+[0m[36m  kind: Deployment
+[0m[36m  metadata:
+[0m[36m    name: cartservice
+[0m[36m
+--------------------------------------------
+
+[0m-- [31m[error] [0mAppArmorAnnotationMissing
+   Message: AppArmor annotation missing. The annotation 'container.apparmor.security.beta.kubernetes.io/server' should be added.
+   Metadata:
+      Container: server
+      MissingAnnotation: container.apparmor.security.beta.kubernetes.io/server
+
+-- [31m[error] [0mAutomountServiceAccountTokenTrueAndDefaultSA
+   Message: Default service account with token mounted. automountServiceAccountToken should be set to 'false' on either the ServiceAccount or on the PodSpec or a non-default service account should be used.
+
+-- [31m[error] [0mCapabilityOrSecurityContextMissing
+   Message: Security Context not set. The Security Context should be specified and all Capabilities should be dropped by setting the Drop list to ALL.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mRunAsNonRootPSCNilCSCNil
+   Message: runAsNonRoot should be set to true or runAsUser should be set to a value > 0 either in the container SecurityContext or PodSecurityContext.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mAllowPrivilegeEscalationNil
+   Message: allowPrivilegeEscalation not set which allows privilege escalation. It should be set to 'false'.
+   Metadata:
+      Container: server
+
+-- [33m[warning] [0mPrivilegedNil
+   Message: privileged is not set in container SecurityContext. Privileged defaults to 'false' but it should be explicitly set to 'false'.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mReadOnlyRootFilesystemNil
+   Message: readOnlyRootFilesystem is not set in container SecurityContext. It should be set to 'true'.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mSeccompAnnotationMissing
+   Message: Seccomp annotation is missing. The annotation seccomp.security.alpha.kubernetes.io/pod: runtime/default should be added.
+   Metadata:
+      MissingAnnotation: seccomp.security.alpha.kubernetes.io/pod
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: v1
+[0m[36m  kind: Service
+[0m[36m
+--------------------------------------------
+
+[0m-- [33m[warning] [0mUnsupported resource
+   Message: Resource is not currently supported.
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: apps/v1
+[0m[36m  kind: Deployment
+[0m[36m  metadata:
+[0m[36m    name: loadgenerator
+[0m[36m
+--------------------------------------------
+
+[0m-- [31m[error] [0mAppArmorAnnotationMissing
+   Message: AppArmor annotation missing. The annotation 'container.apparmor.security.beta.kubernetes.io/main' should be added.
+   Metadata:
+      Container: main
+      MissingAnnotation: container.apparmor.security.beta.kubernetes.io/main
+
+-- [31m[error] [0mAutomountServiceAccountTokenTrueAndDefaultSA
+   Message: Default service account with token mounted. automountServiceAccountToken should be set to 'false' on either the ServiceAccount or on the PodSpec or a non-default service account should be used.
+
+-- [31m[error] [0mCapabilityOrSecurityContextMissing
+   Message: Security Context not set. The Security Context should be specified and all Capabilities should be dropped by setting the Drop list to ALL.
+   Metadata:
+      Container: main
+
+-- [31m[error] [0mRunAsNonRootPSCNilCSCNil
+   Message: runAsNonRoot should be set to true or runAsUser should be set to a value > 0 either in the container SecurityContext or PodSecurityContext.
+   Metadata:
+      Container: main
+
+-- [31m[error] [0mAllowPrivilegeEscalationNil
+   Message: allowPrivilegeEscalation not set which allows privilege escalation. It should be set to 'false'.
+   Metadata:
+      Container: main
+
+-- [33m[warning] [0mPrivilegedNil
+   Message: privileged is not set in container SecurityContext. Privileged defaults to 'false' but it should be explicitly set to 'false'.
+   Metadata:
+      Container: main
+
+-- [31m[error] [0mReadOnlyRootFilesystemNil
+   Message: readOnlyRootFilesystem is not set in container SecurityContext. It should be set to 'true'.
+   Metadata:
+      Container: main
+
+-- [31m[error] [0mSeccompAnnotationMissing
+   Message: Seccomp annotation is missing. The annotation seccomp.security.alpha.kubernetes.io/pod: runtime/default should be added.
+   Metadata:
+      MissingAnnotation: seccomp.security.alpha.kubernetes.io/pod
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: apps/v1
+[0m[36m  kind: Deployment
+[0m[36m  metadata:
+[0m[36m    name: currencyservice
+[0m[36m
+--------------------------------------------
+
+[0m-- [31m[error] [0mAppArmorAnnotationMissing
+   Message: AppArmor annotation missing. The annotation 'container.apparmor.security.beta.kubernetes.io/server' should be added.
+   Metadata:
+      Container: server
+      MissingAnnotation: container.apparmor.security.beta.kubernetes.io/server
+
+-- [31m[error] [0mAutomountServiceAccountTokenTrueAndDefaultSA
+   Message: Default service account with token mounted. automountServiceAccountToken should be set to 'false' on either the ServiceAccount or on the PodSpec or a non-default service account should be used.
+
+-- [31m[error] [0mCapabilityOrSecurityContextMissing
+   Message: Security Context not set. The Security Context should be specified and all Capabilities should be dropped by setting the Drop list to ALL.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mRunAsNonRootPSCNilCSCNil
+   Message: runAsNonRoot should be set to true or runAsUser should be set to a value > 0 either in the container SecurityContext or PodSecurityContext.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mAllowPrivilegeEscalationNil
+   Message: allowPrivilegeEscalation not set which allows privilege escalation. It should be set to 'false'.
+   Metadata:
+      Container: server
+
+-- [33m[warning] [0mPrivilegedNil
+   Message: privileged is not set in container SecurityContext. Privileged defaults to 'false' but it should be explicitly set to 'false'.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mReadOnlyRootFilesystemNil
+   Message: readOnlyRootFilesystem is not set in container SecurityContext. It should be set to 'true'.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mSeccompAnnotationMissing
+   Message: Seccomp annotation is missing. The annotation seccomp.security.alpha.kubernetes.io/pod: runtime/default should be added.
+   Metadata:
+      MissingAnnotation: seccomp.security.alpha.kubernetes.io/pod
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: v1
+[0m[36m  kind: Service
+[0m[36m
+--------------------------------------------
+
+[0m-- [33m[warning] [0mUnsupported resource
+   Message: Resource is not currently supported.
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: apps/v1
+[0m[36m  kind: Deployment
+[0m[36m  metadata:
+[0m[36m    name: shippingservice
+[0m[36m
+--------------------------------------------
+
+[0m-- [31m[error] [0mAppArmorAnnotationMissing
+   Message: AppArmor annotation missing. The annotation 'container.apparmor.security.beta.kubernetes.io/server' should be added.
+   Metadata:
+      Container: server
+      MissingAnnotation: container.apparmor.security.beta.kubernetes.io/server
+
+-- [31m[error] [0mAutomountServiceAccountTokenTrueAndDefaultSA
+   Message: Default service account with token mounted. automountServiceAccountToken should be set to 'false' on either the ServiceAccount or on the PodSpec or a non-default service account should be used.
+
+-- [31m[error] [0mCapabilityOrSecurityContextMissing
+   Message: Security Context not set. The Security Context should be specified and all Capabilities should be dropped by setting the Drop list to ALL.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mRunAsNonRootPSCNilCSCNil
+   Message: runAsNonRoot should be set to true or runAsUser should be set to a value > 0 either in the container SecurityContext or PodSecurityContext.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mAllowPrivilegeEscalationNil
+   Message: allowPrivilegeEscalation not set which allows privilege escalation. It should be set to 'false'.
+   Metadata:
+      Container: server
+
+-- [33m[warning] [0mPrivilegedNil
+   Message: privileged is not set in container SecurityContext. Privileged defaults to 'false' but it should be explicitly set to 'false'.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mReadOnlyRootFilesystemNil
+   Message: readOnlyRootFilesystem is not set in container SecurityContext. It should be set to 'true'.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mSeccompAnnotationMissing
+   Message: Seccomp annotation is missing. The annotation seccomp.security.alpha.kubernetes.io/pod: runtime/default should be added.
+   Metadata:
+      MissingAnnotation: seccomp.security.alpha.kubernetes.io/pod
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: v1
+[0m[36m  kind: Service
+[0m[36m
+--------------------------------------------
+
+[0m-- [33m[warning] [0mUnsupported resource
+   Message: Resource is not currently supported.
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: apps/v1
+[0m[36m  kind: Deployment
+[0m[36m  metadata:
+[0m[36m    name: redis-cart
+[0m[36m
+--------------------------------------------
+
+[0m-- [31m[error] [0mAppArmorAnnotationMissing
+   Message: AppArmor annotation missing. The annotation 'container.apparmor.security.beta.kubernetes.io/redis' should be added.
+   Metadata:
+      Container: redis
+      MissingAnnotation: container.apparmor.security.beta.kubernetes.io/redis
+
+-- [31m[error] [0mAutomountServiceAccountTokenTrueAndDefaultSA
+   Message: Default service account with token mounted. automountServiceAccountToken should be set to 'false' on either the ServiceAccount or on the PodSpec or a non-default service account should be used.
+
+-- [31m[error] [0mCapabilityOrSecurityContextMissing
+   Message: Security Context not set. The Security Context should be specified and all Capabilities should be dropped by setting the Drop list to ALL.
+   Metadata:
+      Container: redis
+
+-- [31m[error] [0mRunAsNonRootPSCNilCSCNil
+   Message: runAsNonRoot should be set to true or runAsUser should be set to a value > 0 either in the container SecurityContext or PodSecurityContext.
+   Metadata:
+      Container: redis
+
+-- [31m[error] [0mAllowPrivilegeEscalationNil
+   Message: allowPrivilegeEscalation not set which allows privilege escalation. It should be set to 'false'.
+   Metadata:
+      Container: redis
+
+-- [33m[warning] [0mPrivilegedNil
+   Message: privileged is not set in container SecurityContext. Privileged defaults to 'false' but it should be explicitly set to 'false'.
+   Metadata:
+      Container: redis
+
+-- [31m[error] [0mReadOnlyRootFilesystemNil
+   Message: readOnlyRootFilesystem is not set in container SecurityContext. It should be set to 'true'.
+   Metadata:
+      Container: redis
+
+-- [31m[error] [0mSeccompAnnotationMissing
+   Message: Seccomp annotation is missing. The annotation seccomp.security.alpha.kubernetes.io/pod: runtime/default should be added.
+   Metadata:
+      MissingAnnotation: seccomp.security.alpha.kubernetes.io/pod
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: v1
+[0m[36m  kind: Service
+[0m[36m
+--------------------------------------------
+
+[0m-- [33m[warning] [0mUnsupported resource
+   Message: Resource is not currently supported.
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: apps/v1
+[0m[36m  kind: Deployment
+[0m[36m  metadata:
+[0m[36m    name: adservice
+[0m[36m
+--------------------------------------------
+
+[0m-- [31m[error] [0mAppArmorAnnotationMissing
+   Message: AppArmor annotation missing. The annotation 'container.apparmor.security.beta.kubernetes.io/server' should be added.
+   Metadata:
+      Container: server
+      MissingAnnotation: container.apparmor.security.beta.kubernetes.io/server
+
+-- [31m[error] [0mAutomountServiceAccountTokenTrueAndDefaultSA
+   Message: Default service account with token mounted. automountServiceAccountToken should be set to 'false' on either the ServiceAccount or on the PodSpec or a non-default service account should be used.
+
+-- [31m[error] [0mCapabilityOrSecurityContextMissing
+   Message: Security Context not set. The Security Context should be specified and all Capabilities should be dropped by setting the Drop list to ALL.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mRunAsNonRootPSCNilCSCNil
+   Message: runAsNonRoot should be set to true or runAsUser should be set to a value > 0 either in the container SecurityContext or PodSecurityContext.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mAllowPrivilegeEscalationNil
+   Message: allowPrivilegeEscalation not set which allows privilege escalation. It should be set to 'false'.
+   Metadata:
+      Container: server
+
+-- [33m[warning] [0mPrivilegedNil
+   Message: privileged is not set in container SecurityContext. Privileged defaults to 'false' but it should be explicitly set to 'false'.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mReadOnlyRootFilesystemNil
+   Message: readOnlyRootFilesystem is not set in container SecurityContext. It should be set to 'true'.
+   Metadata:
+      Container: server
+
+-- [31m[error] [0mSeccompAnnotationMissing
+   Message: Seccomp annotation is missing. The annotation seccomp.security.alpha.kubernetes.io/pod: runtime/default should be added.
+   Metadata:
+      MissingAnnotation: seccomp.security.alpha.kubernetes.io/pod
+
+[36m
+---------------- Results for ---------------
+
+[0m[36m  apiVersion: v1
+[0m[36m  kind: Service
+[0m[36m
+--------------------------------------------
+
+[0m-- [33m[warning] [0mUnsupported resource
+   Message: Resource is not currently supported.
+
