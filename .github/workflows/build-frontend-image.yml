@@ -41,7 +41,7 @@ jobs:
 
 #       Prune all images and containers
       - name: prune
-        run: sudo docker system prune -a
+        run: yes | sudo docker system prune -a
 
 #       Builds the docker image
       - name: build 
@@ -68,41 +68,44 @@ jobs:
 #       - name: bleh
 #         run: sudo docker trust sign harbordemo351.tk/demo7/frontend:v7
  
-  deploy-to-eks:
-    needs: build-docker-image-and-push-to-harbor
-    runs-on: ubuntu-latest
+      - name: kubectl
+        run: kubectl get svc
+ 
+#   deploy-to-eks:
+#     needs: build-docker-image-and-push-to-harbor
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
+#     steps:
+#       - uses: actions/checkout@v2
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1
+#       - name: Configure AWS Credentials
+#         uses: aws-actions/configure-aws-credentials@v1
+#         with:
+#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           aws-region: ap-south-1
 
-      - name: Trigger deploy
-        uses: Consensys/kubernetes-action@master
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: apply -f kubernetes-manifests/kubernetes-manifests.yaml
-      
-#       - name: Get the pod name
+#       - name: Trigger deploy
 #         uses: Consensys/kubernetes-action@master
 #         env:
 #           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
 #         with:
-#           args: get pods -o=name | grep adservice | sed "s/^.\{4\}//"
-#           run: echo "::set-output name=pod-name::$(mix test)\n"
+#           args: apply -f kubernetes-manifests/kubernetes-manifests.yaml
       
-      - name: Update particular pod
-        uses: Consensys/kubernetes-action@master
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: delete pods -l app=frontend
+# #       - name: Get the pod name
+# #         uses: Consensys/kubernetes-action@master
+# #         env:
+# #           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+# #         with:
+# #           args: get pods -o=name | grep adservice | sed "s/^.\{4\}//"
+# #           run: echo "::set-output name=pod-name::$(mix test)\n"
+      
+#       - name: Update particular pod
+#         uses: Consensys/kubernetes-action@master
+#         env:
+#           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+#         with:
+#           args: delete pods -l app=frontend
           
 #   Polaris:
 #     needs: deploy-to-eks
