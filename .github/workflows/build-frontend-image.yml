@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: remove all docker containers and images (to avoid exceeding storage)
-        run: sudo docker system prune -a
+        run: yes | sudo docker system prune -a
         
 #       Builds the docker image
       - name: build 
