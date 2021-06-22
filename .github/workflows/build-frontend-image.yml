@@ -44,20 +44,20 @@ jobs:
         run: yes | sudo docker system prune -a
 
 #       Builds the docker image
-      - name: build 
-        run: sudo docker build ./ -t frontend
-#        Testing purposes
-#       - name: test
-#         run: sudo docker images
+#       - name: build 
+#         run: sudo docker build ./ -t frontend
+# #        Testing purposes
+# #       - name: test
+# #         run: sudo docker images
         
-      - name: login to harbor
-        run: echo "${{ secrets.HARBOR_PWD }}" | sudo docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
+#       - name: login to harbor
+#         run: echo "${{ secrets.HARBOR_PWD }}" | sudo docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
 
-      - name: tag the image
-        run: sudo docker tag frontend harbordemo351.tk/demo/frontend
+#       - name: tag the image
+#         run: sudo docker tag frontend harbordemo351.tk/demo/frontend
       
-      - name: push the image
-        run: sudo docker push harbordemo351.tk/demo/frontend
+#       - name: push the image
+#         run: sudo docker push harbordemo351.tk/demo/frontend
  
   deploy-to-eks:
     needs: build-docker-image-and-push-to-harbor
@@ -79,6 +79,9 @@ jobs:
 #           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
 #         with:
 #           args: apply -f kubernetes-manifests/kubernetes-manifests.yaml
+
+      - name: update kubeconfig file
+        run: aws eks --region ap-south-1 update-kubeconfig --name my-cluster
 
       - name: kubectl trigger deploy
         run: kubectl apply -f kubernetes-manifests/kubernetes-manifests.yaml
