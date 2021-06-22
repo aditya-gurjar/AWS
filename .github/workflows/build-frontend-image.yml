@@ -15,9 +15,9 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build-docker-image-and-push-to-harbor:
-    # The type of runner that the job will run on
-    runs-on: self-hosted
+#   build-docker-image-and-push-to-harbor:
+#     # The type of runner that the job will run on
+#     runs-on: self-hosted
 #     env:
 # #       DOCKER_CONTENT_TRUST: 1
 # #       DOCKER_CONTENT_TRUST_SERVER: "https://harbordemo351.tk:4443"
@@ -30,18 +30,18 @@ jobs:
 #       DOCKER_CONTENT_TRUST_OFFLINE_PASSPHRASE: "${{ secrets.DOCKER_CONTENT_TRUST_OFFLINE_PASSPHRASE }}"
 #       DOCKER_CONTENT_TRUST_TAGGING_PASSPHRASE: "${{ secrets.DOCKER_CONTENT_TRUST_TAGGING_PASSPHRASE }}"
 
-    defaults:
-      run:
-        working-directory: ./src/frontend
+#     defaults:
+#       run:
+#         working-directory: ./src/frontend
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+#     # Steps represent a sequence of tasks that will be executed as part of the job
+#     steps:
+#       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+#       - uses: actions/checkout@v2
 
-#       Prune all images and containers
-      - name: prune
-        run: yes | sudo docker system prune -a
+# #       Prune all images and containers
+#       - name: prune
+#         run: yes | sudo docker system prune -a
 
 #       Builds the docker image
 #       - name: build 
@@ -59,19 +59,19 @@ jobs:
 #       - name: push the image
 #         run: sudo docker push harbordemo351.tk/demo/frontend
  
-  deploy-to-eks:
-    needs: build-docker-image-and-push-to-harbor
-    runs-on: ubuntu-latest
+#   deploy-to-eks:
+#     needs: build-docker-image-and-push-to-harbor
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
+#     steps:
+#       - uses: actions/checkout@v2
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1
+#       - name: Configure AWS Credentials
+#         uses: aws-actions/configure-aws-credentials@v1
+#         with:
+#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           aws-region: ap-south-1
 
 #       - name: Trigger deploy
 #         uses: Consensys/kubernetes-action@master
@@ -108,7 +108,7 @@ jobs:
 #         run: kubectl get pods
         
   Polaris:
-    needs: deploy-to-eks
+#     needs: deploy-to-eks
     runs-on: self-hosted
     
     steps:
