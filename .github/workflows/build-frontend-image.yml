@@ -44,20 +44,20 @@ jobs:
         run: yes | sudo docker system prune -a
 
 #       Builds the docker image
-#       - name: build 
-#         run: sudo docker build ./ -t frontend
-# #        Testing purposes
-# #       - name: test
-# #         run: sudo docker images
+      - name: build 
+        run: sudo docker build ./ -t frontend
+#        Testing purposes
+#       - name: test
+#         run: sudo docker images
         
-#       - name: login to harbor
-#         run: echo "${{ secrets.HARBOR_PWD }}" | sudo docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
+      - name: login to harbor
+        run: echo "${{ secrets.HARBOR_PWD }}" | sudo docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
 
-#       - name: tag the image
-#         run: sudo docker tag frontend harbordemo351.tk/demo/frontend
+      - name: tag the image
+        run: sudo docker tag frontend harbordemo351.tk/demo/frontend
       
-#       - name: push the image
-#         run: sudo docker push harbordemo351.tk/demo/frontend
+      - name: push the image
+        run: sudo docker push harbordemo351.tk/demo/frontend
  
   deploy-to-eks:
     needs: build-docker-image-and-push-to-harbor
@@ -106,23 +106,22 @@ jobs:
           
       - name: list
         run: kubectl get pods
-#   Polaris:
-#     needs: deploy-to-eks
-#     runs-on: ubuntu-latest
+        
+  Polaris:
+    needs: deploy-to-eks
+    runs-on: ubuntu-latest
     
-#     steps:
-#       - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
       
-#       - name: install polaris
-#         run: |
-#           brew tap FairwindsOps/tap
-#           brew install FairwindsOps/tap/polaris
-#           polaris version
+      - name: install polaris
+        run: |
+          brew tap FairwindsOps/tap
+          brew install FairwindsOps/tap/polaris
+          polaris version
       
-#       - name: audit
-#         run: polaris audit --audit-path kubernetes-manifests/kubernetes-manifests.yaml --format=pretty
-        
-        
+      - name: audit
+        run: sudo polaris audit --audit-path kubernetes-manifests/kubernetes-manifests.yaml --format=json > /var/www/html/polaris.json
   
 #   kubeaudit:
 #     # The type of runner that the job will run on
