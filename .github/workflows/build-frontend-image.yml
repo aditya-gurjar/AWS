@@ -102,7 +102,7 @@ jobs:
         run: brew install kubeaudit
     
       - name: run tests
-        run: kubeaudit all -f ./kubernetes-manifests.yaml || true > sudo tee -a /var/www/html/kubeaudit.txt
+        run: kubeaudit all -f ./kubernetes-manifests.yaml > sudo tee -a /var/www/html/kubeaudit.txt
 
 #   kube-bench:
 #     # The type of runner that the job will run on
