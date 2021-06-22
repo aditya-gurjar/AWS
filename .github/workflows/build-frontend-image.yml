@@ -44,46 +44,34 @@ jobs:
         run: yes | sudo docker system prune -a
 
 #       Builds the docker image
-#       - name: build 
-#         run: sudo docker build ./ -t frontend
-# #        Testing purposes
-# #       - name: test
-# #         run: sudo docker images
+      - name: build 
+        run: sudo docker build ./ -t frontend
+#        Testing purposes
+#       - name: test
+#         run: sudo docker images
         
-#       - name: login to harbor
-#         run: echo "${{ secrets.HARBOR_PWD }}" | sudo docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
+      - name: login to harbor
+        run: echo "${{ secrets.HARBOR_PWD }}" | sudo docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
 
-#       - name: tag the image
-#         run: sudo docker tag frontend harbordemo351.tk/demo/frontend
+      - name: tag the image
+        run: sudo docker tag frontend harbordemo351.tk/demo/frontend
       
-#       - name: push the image
-#         run: sudo docker push harbordemo351.tk/demo/frontend
-#       - name: ls
-#         run: sudo ls ~/.docker/trust/private
-#       - name: l
-#         run: |
-#               cd
-#               sudo docker trust signer add --key adi.pub adi harbordemo351.tk/demo7/frontend:v7 
-        
-#       - name: bleh
-#         run: sudo docker trust sign harbordemo351.tk/demo7/frontend:v7
+      - name: push the image
+        run: sudo docker push harbordemo351.tk/demo/frontend
  
-      - name: kubectl
-        run: kubectl get svc
- 
-#   deploy-to-eks:
-#     needs: build-docker-image-and-push-to-harbor
-#     runs-on: ubuntu-latest
+  deploy-to-eks:
+    needs: build-docker-image-and-push-to-harbor
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-#       - name: Configure AWS Credentials
-#         uses: aws-actions/configure-aws-credentials@v1
-#         with:
-#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#           aws-region: ap-south-1
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
 
 #       - name: Trigger deploy
 #         uses: Consensys/kubernetes-action@master
@@ -91,14 +79,17 @@ jobs:
 #           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
 #         with:
 #           args: apply -f kubernetes-manifests/kubernetes-manifests.yaml
+
+      - name: kubectl trigger deploy
+        run: kubectl apply -f kubernetes-manifests/kubernetes-manifests.yaml
       
-# #       - name: Get the pod name
-# #         uses: Consensys/kubernetes-action@master
-# #         env:
-# #           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-# #         with:
-# #           args: get pods -o=name | grep adservice | sed "s/^.\{4\}//"
-# #           run: echo "::set-output name=pod-name::$(mix test)\n"
+#       - name: Get the pod name
+#         uses: Consensys/kubernetes-action@master
+#         env:
+#           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+#         with:
+#           args: get pods -o=name | grep adservice | sed "s/^.\{4\}//"
+#           run: echo "::set-output name=pod-name::$(mix test)\n"
       
 #       - name: Update particular pod
 #         uses: Consensys/kubernetes-action@master
@@ -106,7 +97,12 @@ jobs:
 #           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
 #         with:
 #           args: delete pods -l app=frontend
+
+      - name: kubectl update particular pod
+        run: kubectl delete pods -l app=frontend
           
+      - name: list
+        run: kubectl get pods
 #   Polaris:
 #     needs: deploy-to-eks
 #     runs-on: ubuntu-latest
