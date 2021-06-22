@@ -108,7 +108,7 @@ jobs:
 #         run: kubectl get pods
         
   Polaris:
-    needs: deploy-to-eks
+#     needs: deploy-to-eks
     runs-on: self-hosted
     
     steps:
