@@ -122,9 +122,9 @@ jobs:
               git clone https://github.com/aquasecurity/kube-bench.git
               cd kube-bench
               echo "${{ secrets.HARBOR_PWD }}" | sudo docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
-              sudo docker build ./ -t k8s/kube-bench 
-              sudo docker tag k8s/kube-bench harbordemo351.tk/demo/kube-bench
-              sudo docker push harbordemo351.tk/demo/kube-bench
+              sudo docker build ./ -t k8s/kube-bench:latest 
+              sudo docker tag k8s/kube-bench:latest harbordemo351.tk/demo/kube-bench:latest
+              sudo docker push harbordemo351.tk/demo/kube-bench:latest
           
       - name: delete previous job if present
         run: kubectl delete job kube-bench --ignore-not-found=true
