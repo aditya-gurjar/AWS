@@ -68,6 +68,9 @@ jobs:
       - name: kubectl update particular pod
         run: kubectl delete pods -l app=frontend
         
+      - name: webpage
+        run: sudo service apache2 restart
+        
   polaris:
     needs: deploy-to-eks
     runs-on: self-hosted
