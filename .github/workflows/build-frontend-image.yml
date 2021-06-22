@@ -135,9 +135,6 @@ jobs:
           
       - name: delete previous job if present
         run: kubectl delete job kube-bench --ignore-not-found=true
-      
-      - name: cat
-        run: cat job-eks.yaml
         
       - name: deploy as job
         run: kubectl apply -f job-eks.yaml
