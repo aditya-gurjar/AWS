@@ -131,8 +131,9 @@ jobs:
       
       - name: cat
         run: cat kube-bench/job-eks.yaml
+        
       - name: deploy as job
-        run: kubectl apply -f kube-bench/job-eks.yaml
+        run: kubectl apply -f job-eks.yaml
       
       - name: sleep
         run: sleep 5
