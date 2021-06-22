@@ -133,7 +133,7 @@ jobs:
         run: kubectl apply -f kube-bench/job-eks.yaml
       
       - name: sleep
-        run: sleep 3
+        run: sleep 5
         
       - name: publish the logs
         run: kubectl logs job/kube-bench | sudo tee -a /var/www/html/kubebench.txt
