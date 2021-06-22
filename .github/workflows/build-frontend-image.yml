@@ -132,5 +132,11 @@ jobs:
       - name: deploy as job
         run: kubectl apply -f kube-bench/job-eks.yaml
       
+      - name: sleep
+        run: sleep 5
+        
+      - name: list
+        run: kubectl get pods
+        
       - name: publish the logs
         run: kubectl logs job/kube-bench
