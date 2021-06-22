@@ -66,22 +66,6 @@ jobs:
 
       - name: kubectl update particular pod
         run: kubectl delete pods -l app=frontend
-        
-  polaris:
-    needs: deploy-to-eks
-    runs-on: self-hosted
-    
-    steps:
-      - uses: actions/checkout@v2
-      
-      - name: install polaris
-        run: |
-          brew tap FairwindsOps/tap
-          brew install FairwindsOps/tap/polaris
-          polaris version
-      
-      - name: audit
-        run:  polaris audit --audit-path kubernetes-manifests/kubernetes-manifests.yaml --format=pretty 
   
   kubeaudit:
     # The type of runner that the job will run on
@@ -102,6 +86,22 @@ jobs:
     
       - name: run tests
         run: kubeaudit all -f ./kubernetes-manifests.yaml 
+        
+  polaris:
+    needs: deploy-to-eks
+    runs-on: self-hosted
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: install polaris
+        run: |
+          brew tap FairwindsOps/tap
+          brew install FairwindsOps/tap/polaris
+          polaris version
+      
+      - name: audit
+        run:  polaris audit --audit-path kubernetes-manifests/kubernetes-manifests.yaml --format=pretty 
 
   kube-bench:
     # The type of runner that the job will run on
