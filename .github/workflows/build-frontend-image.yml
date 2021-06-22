@@ -33,7 +33,7 @@ jobs:
         
 #       Builds the docker image
       - name: build 
-        run: sudo docker build ./ -t frontend
+        run: sudo docker build --no-cache ./ -t frontend
         
       - name: login to harbor
         run: echo "${{ secrets.HARBOR_PWD }}" | sudo docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
