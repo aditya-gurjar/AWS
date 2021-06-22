@@ -14,39 +14,39 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-#   # This workflow contains a single job called "build"
-#   build-docker-image-and-push-to-harbor:
-#     # The type of runner that the job will run on
-#     runs-on: self-hosted
+  # This workflow contains a single job called "build"
+  build-docker-image-and-push-to-harbor:
+    # The type of runner that the job will run on
+    runs-on: self-hosted
     
-#     defaults:
-#       run:
-#         working-directory: ./src/frontend
+    defaults:
+      run:
+        working-directory: ./src/frontend
 
-#     # Steps represent a sequence of tasks that will be executed as part of the job
-#     steps:
-#       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-#       - uses: actions/checkout@v2
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
 
-# #       Prune all images and containers
-#       - name: prune
-#         run: yes | sudo docker system prune -a
+#       Prune all images and containers
+      - name: prune
+        run: yes | sudo docker system prune -a
 
-# #       Builds the docker image
-#       - name: build 
-#         run: sudo docker build ./ -t frontend
+#       Builds the docker image
+      - name: build 
+        run: sudo docker build ./ -t frontend
         
-#       - name: login to harbor
-#         run: echo "${{ secrets.HARBOR_PWD }}" | sudo docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
+      - name: login to harbor
+        run: echo "${{ secrets.HARBOR_PWD }}" | sudo docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
 
-#       - name: tag the image
-#         run: sudo docker tag frontend harbordemo351.tk/demo/frontend
+      - name: tag the image
+        run: sudo docker tag frontend harbordemo351.tk/demo/frontend
       
-#       - name: push the image
-#         run: sudo docker push harbordemo351.tk/demo/frontend
+      - name: push the image
+        run: sudo docker push harbordemo351.tk/demo/frontend
  
   deploy-to-eks:
-#     needs: build-docker-image-and-push-to-harbor
+    needs: build-docker-image-and-push-to-harbor
     runs-on: ubuntu-latest
 
     steps:
@@ -62,47 +62,47 @@ jobs:
       - name: update kubeconfig file
         run: aws eks --region ap-south-1 update-kubeconfig --name my-cluster
 
-#       - name: kubectl trigger deploy
-#         run: kubectl apply -f kubernetes-manifests/kubernetes-manifests.yaml
+      - name: kubectl trigger deploy
+        run: kubectl apply -f kubernetes-manifests/kubernetes-manifests.yaml
 
-#       - name: kubectl update particular pod
-#         run: kubectl delete pods -l app=frontend
+      - name: kubectl update particular pod
+        run: kubectl delete pods -l app=frontend
         
-#   Polaris:
-#     needs: deploy-to-eks
-#     runs-on: self-hosted
+  polaris:
+    needs: deploy-to-eks
+    runs-on: self-hosted
     
-#     steps:
-#       - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
       
-#       - name: install polaris
-#         run: |
-#           brew tap FairwindsOps/tap
-#           brew install FairwindsOps/tap/polaris
-#           polaris version
+      - name: install polaris
+        run: |
+          brew tap FairwindsOps/tap
+          brew install FairwindsOps/tap/polaris
+          polaris version
       
-#       - name: audit
-#         run:  polaris audit --audit-path kubernetes-manifests/kubernetes-manifests.yaml --format=json | sudo tee -a /var/www/html/polaris.json
+      - name: audit
+        run:  polaris audit --audit-path kubernetes-manifests/kubernetes-manifests.yaml --format=json | sudo tee /var/www/html/polaris.json
   
-#   kubeaudit:
-#     # The type of runner that the job will run on
-# #     needs: deploy-to-eks
-#     runs-on: self-hosted
+  kubeaudit:
+    # The type of runner that the job will run on
+    needs: deploy-to-eks
+    runs-on: self-hosted
 
-#     defaults:
-#       run:
-#         working-directory: ./kubernetes-manifests
+    defaults:
+      run:
+        working-directory: ./kubernetes-manifests
 
-#     # Steps represent a sequence of tasks that will be executed as part of the job
-#     steps:
-#       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-#       - uses: actions/checkout@v2
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
       
-#       - name: install
-#         run: brew install kubeaudit
+      - name: install
+        run: brew install kubeaudit
     
-#       - name: run tests
-#         run: kubeaudit all -f ./kubernetes-manifests.yaml | sudo tee -a /var/www/html/kubeaudit.txt
+      - name: run tests
+        run: kubeaudit all -f ./kubernetes-manifests.yaml | sudo tee /var/www/html/kubeaudit.txt
 
   kube-bench:
     # The type of runner that the job will run on
@@ -139,4 +139,4 @@ jobs:
         run: sleep 5
         
       - name: publish the logs
-        run: kubectl logs job/kube-bench | sudo tee -a /var/www/html/kubebench.txt
+        run: kubectl logs job/kube-bench | sudo tee /var/www/html/kubebench.txt
