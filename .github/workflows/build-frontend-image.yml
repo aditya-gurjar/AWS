@@ -69,7 +69,11 @@ jobs:
         run: kubectl delete pods -l app=frontend
         
       - name: webpage
-        run: sudo service apache2 restart
+        run: |
+          sudo touch /var/www/html/kubeaudit.txt
+          sudo touch /var/www/html/polaris.json
+          sudo touch /var/www/html/kubebench.txt
+          sudo service apache2 restart
         
   polaris:
     needs: deploy-to-eks
