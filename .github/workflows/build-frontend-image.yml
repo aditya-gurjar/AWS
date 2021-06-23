@@ -81,14 +81,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: install polaris
+      - name: dashboard
         run: |
-          brew tap FairwindsOps/tap
-          brew install FairwindsOps/tap/polaris
-          polaris version
+          kubectl apply -f https://github.com/fairwindsops/polaris/releases/latest/download/dashboard.yaml
+          kubectl port-forward --namespace polaris svc/polaris-dashboard 8080:80
+
+#       - name: install polaris
+#         run: |
+#           brew tap FairwindsOps/tap
+#           brew install FairwindsOps/tap/polaris
+#           polaris version
       
-      - name: audit
-        run:  polaris audit --audit-path kubernetes-manifests/kubernetes-manifests.yaml --format=json | sudo tee /var/www/html/polaris.json
+#       - name: audit
+#         run:  polaris audit --audit-path kubernetes-manifests/kubernetes-manifests.yaml --format=json | sudo tee /var/www/html/polaris.json
   
   kubeaudit:
     # The type of runner that the job will run on
