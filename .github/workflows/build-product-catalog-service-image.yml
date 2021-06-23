@@ -44,7 +44,7 @@ jobs:
       - name: push the image
         run: docker push harbordemo351.tk/demo/productcatalogservice
         
-deploy-to-eks:
+  deploy-to-eks:
     needs: build-docker-image-and-push-to-harbor
     runs-on: self-hosted
 
