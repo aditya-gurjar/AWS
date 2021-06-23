@@ -36,13 +36,13 @@ jobs:
         run: sudo docker build ./ -t shippingservice
         
       - name: login to harbor
-        run: echo "${{ secrets.HARBOR_PWD }}" | docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
+        run: echo "${{ secrets.HARBOR_PWD }}" | sudo docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
 
       - name: tag the image
-        run: docker tag shippingservice harbordemo351.tk/demo/shippingservice
+        run: sudo docker tag shippingservice harbordemo351.tk/demo/shippingservice
       
       - name: push the image
-        run: docker push harbordemo351.tk/demo/shippingservice
+        run: sudo docker push harbordemo351.tk/demo/shippingservice
 
   deploy-to-eks:
     needs: build-docker-image-and-push-to-harbor
