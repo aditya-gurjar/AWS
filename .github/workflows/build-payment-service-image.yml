@@ -36,13 +36,13 @@ jobs:
         run: sudo docker build ./ -t paymentservice
         
       - name: login to harbor
-        run: echo "${{ secrets.HARBOR_PWD }}" | docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
+        run: echo "${{ secrets.HARBOR_PWD }}" | sudo docker login harbordemo351.tk -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
 
       - name: tag the image
-        run: docker tag paymentservice harbordemo351.tk/demo/paymentservice
+        run: sudo docker tag paymentservice harbordemo351.tk/demo/paymentservice
       
       - name: push the image
-        run: docker push harbordemo351.tk/demo/paymentservice
+        run: sudo docker push harbordemo351.tk/demo/paymentservice
 
   deploy-to-eks:
     needs: build-docker-image-and-push-to-harbor
