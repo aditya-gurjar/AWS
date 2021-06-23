@@ -82,8 +82,11 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: dashboard
+        run: kubectl apply -f https://github.com/fairwindsops/polaris/releases/latest/download/dashboard.yaml
+      
+      - name: dash
         run: |
-          kubectl apply -f https://github.com/fairwindsops/polaris/releases/latest/download/dashboard.yaml
+          sleep 5
           kubectl port-forward --namespace polaris svc/polaris-dashboard 8080:80
 
 #       - name: install polaris
